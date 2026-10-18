@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#c7eaff">
+<title>❤️ 100 Reasons Why I Love Her</title>
+
+<style>
+*{box-sizing:border-box}
+:root{--blue:#bce6ff;--dark:#397ba5;--pink:#ffb5d2}
+body{
+ margin:0;min-height:100vh;overflow-x:hidden;
+ font-family:Georgia,"Times New Roman",serif;
+ color:#416f90;
+ background:linear-gradient(135deg,#e8f8ff,#bde5ff,#ffe7f2,#d8f0ff);
+ background-size:300% 300%;animation:bg 15s ease infinite
+}
+@keyframes bg{50%{background-position:100% 50%}}
+button{font:inherit;cursor:pointer;transition:.25s}
+button:hover{transform:translateY(-3px)}
+.hearts{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.heart{position:absolute;bottom:-40px;animation:floatUp linear infinite;opacity:.65}
+@keyframes floatUp{0%{transform:translateY(0) rotate(0);opacity:0}15%{opacity:.7}100%{transform:translateY(-115vh) rotate(40deg);opacity:0}}
+.intro{
+ position:fixed;inset:0;z-index:10;display:flex;flex-direction:column;
+ align-items:center;justify-content:center;text-align:center;padding:25px;
+ background:linear-gradient(145deg,#d8f2ff,#ffe5f1,#bce7ff);
+ transition:opacity .8s,visibility .8s
+}
+.intro.hide{opacity:0;visibility:hidden;pointer-events:none}
+.bigheart{font-size:78px;animation:pulse 1.2s infinite}
+@keyframes pulse{50%{transform:scale(1.15)}}
+.intro h1{font-size:clamp(32px,8vw,55px);color:#367ba8;margin:18px 0}
+.intro p{line-height:1.7}
+.btn{
+ border:0;border-radius:50px;padding:13px 23px;
+ background:linear-gradient(110deg,#72c7f6,#f3a7cc);
+ color:white;font-weight:bold;box-shadow:0 6px 18px #75b9e755
+}
+.secondary{background:white;color:#5189ad;border:1px solid #c8e7f8;box-shadow:none}
+main{position:relative;z-index:1;max-width:950px;margin:auto;padding:25px 15px}
+.hero{text-align:center;padding:20px 0}
+.eyebrow{font:11px Arial,sans-serif;letter-spacing:4px;color:#759bb4}
+.title{font-size:clamp(36px,8vw,64px);line-height:1.12;color:#397da9;text-shadow:2px 4px #ffffff90}
+.subtitle{line-height:1.8;color:#668da7}
+.panel{
+ margin:22px 0;padding:25px;border-radius:26px;
+ background:#ffffffbb;border:1px solid white;
+ box-shadow:0 12px 35px #6ba8d01c;backdrop-filter:blur(10px)
+}
+.featured{text-align:center;padding:28px 18px}
+.counter{font:12px Arial,sans-serif;letter-spacing:2px}
+.progress{height:7px;max-width:400px;margin:17px auto 25px;background:#dceefa;border-radius:10px;overflow:hidden}
+.bar{height:100%;width:1%;background:linear-gradient(90deg,#6fc5f4,#f4a0c8);transition:width .3s}
+.reason{min-height:125px;display:flex;align-items:center;justify-content:center;font-size:clamp(23px,5vw,34px);line-height:1.5;color:#427da3;overflow-wrap:anywhere}
+.actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:18px}
+.note{text-align:center;line-height:2;color:#658ba5;font-size:16px}
+.sectionhead{text-align:center;margin-bottom:22px}
+.sectionhead h2{font-size:29px;color:#427fa7}
+.sectionhead p{font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.item{
+ display:flex;gap:10px;align-items:flex-start;text-align:left;
+ padding:14px;background:#ffffffdf;border:1px solid white;border-radius:15px;
+ color:#547b96;font-size:14px;line-height:1.65;overflow-wrap:anywhere
+}
+.item:hover,.item.active{background:#fff0f7;border-color:#f2b4d0}
+.num{flex-shrink:0;background:#ffe4f0;color:#d87ba5;border-radius:8px;padding:4px 7px;font:bold 12px Arial}
+footer{position:relative;z-index:1;text-align:center;padding:10px 20px 38px;line-height:2;color:#7195ac}
+@media(max-width:520px){
+ main{padding:18px 12px}.panel{padding:19px 13px;border-radius:21px}
+ .grid{grid-template-columns:1fr}.hero{padding-top:10px}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<div class="hearts" id="hearts"></div>
+
+<div class="intro" id="intro">
+ <div class="bigheart">💙</div>
+ <p>A little something made with love...</p>
+ <h1>For Someone Special</h1>
+ <p>100 little reasons. One very special person. 💗</p>
+ <button class="btn" id="openBtn">Open Your Surprise 💌</button>
+</div>
+
+<main>
+ <header class="hero">
+  <div class="eyebrow">A LITTLE PIECE OF MY HEART</div>
+  <h1 class="title">❤️ 100 Reasons<br>Why I Love Her</h1>
+  <div class="subtitle">A hundred little reasons.<br>One very special person. 💗</div>
+ </header>
+
+ <section class="panel featured" id="featured">
+  <div style="font-size:27px">✨ 💕 ✨</div>
+  <div class="counter" id="counter">REASON 1 OF 100</div>
+  <div class="progress"><div class="bar" id="bar"></div></div>
+  <div class="reason" id="currentReason" aria-live="polite">Her smile makes my day better.</div>
+  <div class="actions">
+   <button class="btn" id="next">Next Reason 💗</button>
+   <button class="btn secondary" id="random">Surprise Me ✨</button>
+  </div>
+  <div class="actions">
+   <button class="btn secondary" id="prev">← Previous</button>
+   <button class="btn secondary" id="seeAll">See All 100 ↓</button>
+  </div>
+ </section>
+
+ <section class="panel">
+  <div class="sectionhead">
+   <h2>A Little Note 💌</h2>
+   <p>Some feelings are too beautiful to keep to yourself.</p>
+  </div>
+  <div class="note">
+   Out of all the people in this world, you are someone who makes ordinary moments feel extraordinary.<br>
+   These 100 reasons are just a little reminder of how special you are.<br>
+   You don't have to be perfect.<br><strong>You just have to be you. ❤️</strong>
+  </div>
+ </section>
+
+ <section class="panel" id="allReasons">
+  <div class="sectionhead">
+   <h2>All 100 Reasons 💖</h2>
+   <p>Tap any reason to read it above.</p>
+  </div>
+  <div class="grid" id="grid"></div>
+ </section>
+</main>
+
+<footer>
+ <div style="font-size:26px">💙 💗 💙</div>
+ Made with love, for someone unforgettable.<br>
+ Some people are special for a reason.<br>
+ <strong>And some are special for a hundred. ❤️</strong>
+</footer>
+
+<script>
+const reasons = [
+"Her smile makes my day better.",
+"Her eyes are beautiful.",
+"She makes me happy without even trying.",
+"I love the way she laughs.",
+"She makes me feel special.",
+"I love talking to her.",
+"She makes boring days exciting.",
+"I love her personality.",
+"She makes me smile at my phone.",
+"She is always on my mind.",
+"I love the way she talks.",
+"She makes me feel comfortable.",
+"I love her voice.",
+"She makes me forget my problems.",
+"I love her sense of humor.",
+"She makes me feel lucky.",
+"I love the little things she does.",
+"She makes my heart beat faster.",
+"I love seeing her happy.",
+"She makes me want to be a better person.",
+"I love her kindness.",
+"She is different from everyone else.",
+"I love the way she looks at me.",
+"She makes me feel understood.",
+"I love her energy.",
+"She makes me excited to wake up.",
+"I love hearing her name.",
+"She makes every moment feel special.",
+"I love how she can change my mood.",
+"She is beautiful inside and out.",
+"I love her little habits.",
+"She makes me nervous in the best way.",
+"I love being around her.",
+"She gives me butterflies.",
+"I love the way she expresses herself.",
+"She makes me feel appreciated.",
+"I love her honesty.",
+"She makes me laugh.",
+"I love the memories we share.",
+"She makes me look forward to tomorrow.",
+"I love how cute she is without realizing it.",
+"She makes ordinary moments unforgettable.",
+"I love her confidence.",
+"She has a special place in my heart.",
+"I love the way she thinks.",
+"She makes me feel like myself.",
+"I love her reactions.",
+"She makes me happy just by being there.",
+"I love her little imperfections.",
+"She is someone I never get tired of.",
+"I love how she can distract me from everything.",
+"She makes me believe in love.",
+"I love her style.",
+"She makes me feel something nobody else can.",
+"I love the way she says certain words.",
+"She makes me want to spend more time with her.",
+"I love how adorable she can be.",
+"She makes my heart feel full.",
+"I love her opinions.",
+"She makes me feel excited for no reason.",
+"I love how she can make me smile with one message.",
+"She is the first person I want to tell things to.",
+"I love the way she carries herself.",
+"She makes me feel hopeful.",
+"I love how she surprises me.",
+"She makes me appreciate the little things.",
+"I love how she can make me laugh when I don't feel like it.",
+"She is beautiful even when she doesn't think she is.",
+"I love the way she treats people.",
+"She makes me want to create more memories.",
+"I love how she makes time feel faster.",
+"She makes me miss her when she's gone.",
+"I love the way she looks when she's happy.",
+"She makes me feel butterflies just by texting me.",
+"I love how she can make me nervous with one look.",
+"She makes me feel grateful.",
+"I love her uniqueness.",
+"She makes me want to know everything about her.",
+"I love hearing about her day.",
+"She makes even silence feel comfortable.",
+"I love the way she inspires me.",
+"She makes me feel excited whenever I see her.",
+"I love how she can turn a bad day around.",
+"She makes me want to protect her happiness.",
+"I love how much I care about her.",
+"She makes me think about our future.",
+"I love the little details I notice about her.",
+"She makes me feel something words can't explain.",
+"I love how she can make me blush.",
+"She is someone I genuinely care about.",
+"I love the way she makes me feel when we're together.",
+"She makes me want to cherish every moment.",
+"I love how she stays in my thoughts.",
+"She makes me smile without even being there.",
+"I love the happiness she brings into my life.",
+"She makes me want to show her how much she means to me.",
+"I love her for who she really is.",
+"She doesn't have to be perfect for me to love her.",
+"I love her because my feelings for her are real.",
+"I love her simply because she's HER, and nobody else could ever be her. ❤️"
+];
+
+let current = 0;
+const currentReason = document.getElementById("currentReason");
+const counter = document.getElementById("counter");
+const bar = document.getElementById("bar");
+const grid = document.getElementById("grid");
+
+function showReason(i) {
+ current = (i + reasons.length) % reasons.length;
+ currentReason.textContent = reasons[current];
+ counter.textContent = `REASON ${current + 1} OF 100`;
+ bar.style.width = `${current + 1}%`;
+ document.querySelectorAll(".item").forEach((el,j)=>{
+  el.classList.toggle("active",j===current);
+ });
+}
+
+reasons.forEach((reason,i)=>{
+ const item = document.createElement("button");
+ item.className = "item";
+ const num = document.createElement("span");
+ num.className = "num";
+ num.textContent = String(i+1).padStart(2,"0");
+ const text = document.createElement("span");
+ text.textContent = reason;
+ item.append(num,text);
+ item.addEventListener("click",()=>{
+  showReason(i);
+  document.getElementById("featured").scrollIntoView({behavior:"smooth",block:"center"});
+ });
+ grid.appendChild(item);
+});
+
+document.getElementById("openBtn").addEventListener("click",()=>{
+ document.getElementById("intro").classList.add("hide");
+});
+document.getElementById("next").addEventListener("click",()=>showReason(current+1));
+document.getElementById("prev").addEventListener("click",()=>showReason(current-1));
+document.getElementById("random").addEventListener("click",()=>{
+ let n;
+ do { n=Math.floor(Math.random()*100); } while(n===current);
+ showReason(n);
+});
+document.getElementById("seeAll").addEventListener("click",()=>{
+ document.getElementById("allReasons").scrollIntoView({behavior:"smooth"});
+});
+
+const heartBox=document.getElementById("hearts");
+for(let i=0;i<28;i++){
+ const h=document.createElement("span");
+ h.className="heart";
+ h.textContent=["♡","♥","💗","💕","💙"][i%5];
+ h.style.left=Math.random()*100+"%";
+ h.style.fontSize=(14+Math.random()*22)+"px";
+ h.style.animationDuration=(8+Math.random()*12)+"s";
+ h.style.animationDelay=(-Math.random()*18)+"s";
+ heartBox.appendChild(h);
+}
+showReason(0);
+</script>
+</body>
+</html>
